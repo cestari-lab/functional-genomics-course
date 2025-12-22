@@ -4,7 +4,7 @@
 # list files
 ls	
 
-# Now try to note the differences between these commands
+# Now, try to note the differences between these commands
 ls -l 		
 ls -lt
 ls -ltr
