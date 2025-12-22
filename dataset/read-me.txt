@@ -1,0 +1,4 @@
+This folder has six fastq. files subsetted from the dataset SRR2889880.fastq.gz to reduce size. We generated six files, each with about 7M reads.
+The folder also has the fasta file for the E. coli ATCC 25922 genome (https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000743255.1/). 
+The reference paper for this assembly can be found here: https://journals.asm.org/doi/10.1128/genomea.00969-14. 
+
