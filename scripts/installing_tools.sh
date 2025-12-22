@@ -12,13 +12,13 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
 
 # After installing, close and reopen your terminal application or refresh it by running the following command:
+conda init --all    # You need to do this only once. You may need to close and reopen your terminal after this.  
 
-source ~/miniconda3/bin/activate
 
-# Note you will see (base) in your terminal prompt, indicating that the base conda environment is active.
 
 # Initialize conda by running the following command:
-conda init --all    # You need to do this only once. You may need to close and reopen your terminal again after this.  
+# Note you will see (base) in your terminal prompt, indicating that the base conda environment is active.
+source ~/miniconda3/bin/activate
 
 # Deactivate conda environment by running:
 conda deactivate
@@ -72,3 +72,4 @@ minimap2 --help
 
 # Remember to always activate the appropriate conda environment before using the installed tools. 
 # This ensures that you are using the correct versions of the tools and their dependencies.
+
