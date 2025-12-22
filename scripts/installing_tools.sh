@@ -1,7 +1,7 @@
 # Installing miniconda and setting up conda environments for bioinformatics tools
 
 # Open Visual Studio Code, then terminal, e.g., Ubuntu (WSL), PowerShell, or Command Prompt.
-# I recommend VSCode terminal for the best experience. You should know these steps and instructions in myCourses!
+# I recommend VSCode terminal for the best experience. You should know these steps. I included instructions in myCourses!
 
 # Additional information is here: https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2
 
@@ -73,5 +73,6 @@ minimap2 --help
 
 # Remember to always activate the appropriate conda environment before using the installed tools. 
 # This ensures that you are using the correct versions of the tools and their dependencies.
+
 
 
