@@ -1,0 +1,4 @@
+The folder also contains the FASTA file for the E. coli ATCC 25922 genome (https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000743255.1/) and the annotation file (GFF format). 
+The reference paper for this assembly can be found here (Minogue et al. 2014, Genome Announcements): https://journals.asm.org/doi/10.1128/genomea.00969-14. 
+We will also use fastq files from this dataset. There are six fastq files, subsetted from the dataset SRR2889880.fastq.gz to reduce file size, each with about 7M reads. We will share this with you in class. 
+We also have two genome versions of the Trypanosoma cruzi Sylvio strain, assembled in 2018 (Talavera-Lopez et al. 2021, Front. Cell. Infect. Microbiol.) and in 2025 (Cruz-Saavedra et al. 2025, Nature Communications), for comparison. 
