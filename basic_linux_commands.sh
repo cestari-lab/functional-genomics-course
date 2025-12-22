@@ -1,10 +1,10 @@
-# Basic Linux commands to get started. You can type the commands coming after $
+# Basic Linux commands to get started. 
 # Any word after # will not be read as a command line. We use it for notation/information.
 
 # list files
 ls	
 
-# Now try and try to note the differences between these commands
+# Now try to note the differences between these commands
 ls -l 		
 ls -lt
 ls -ltr
@@ -37,7 +37,7 @@ nano myfile.txt
 # see the content using cat
 cat myfile.txt
 
-#if you have a lot of content, it is useful to see the beginning or end of file
+#if you have a lot of content, it is helpful to see the beginning or end of the file
 head myfile.txt 	# seeing the beginning few lines of the file
 tail myfile.txt	# seeing the end few lines of the file
 less myfile.txt 	# type q to get out of it if you use more or less commands.
@@ -45,7 +45,7 @@ less myfile.txt 	# type q to get out of it if you use more or less commands.
 # go back to your initial directory
 cd ..
 
-# remove (delete) folders and its files
+# remove (delete) folders and their files
 rm -r myfolder
 
 # end your session
