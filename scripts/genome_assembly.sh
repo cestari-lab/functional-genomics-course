@@ -1,10 +1,10 @@
-# Denovo assembly of E. coli genome from Illumina single-end reads.
-# We will use the reads we trimmed and filtered in the previous class.
+# Denovo assembly of the E. coli genome from Illumina single-end reads.
+# We will use the reads we trimmed and filtered (ecolireads-trimmed.fastq) as we did in the previous class.
 # The assembly will be performed using SPAdes. 
 # The quality of the assembly will be assessed using QUAST and BUSCO.
-# We will do step-by-step instructions in this script for a better understanding of the process.    
+# We will provide step-by-step instructions in this script to better understand the process.    
 
-# First let's install SPAdes. We will use conda, as done for the other tools.
+# First, let's install SPAdes. We will use conda, as done for the other tools.
 # Make sure you have conda installed and the bio_tools environment created as shown in previous scripts.
 # You can read more about SPAdes here: https://github.com/ablab/spades
 conda install -n bio_tools -c bioconda spades
@@ -33,7 +33,7 @@ spades.py --s1 $READS -o $OUTPUT_DIR/spades_assembly --careful --threads 4 --mem
 # The main assembly file is contigs.fasta located in the output directory. You can view the contigs using:
 less $OUTPUT_DIR/spades_assembly/contigs.fasta
 
-# We can also check the assembly statistics using QUAST and BUSCO as shown in the previous script.
+# We can also check the assembly statistics using QUAST and BUSCO, as shown in the previous script.
 # Let's start using QUAST:
 mkdir -p $OUTPUT_DIR/quast_output 
 quast $OUTPUT_DIR/spades_assembly/contigs.fasta -o $OUTPUT_DIR/quast_output --threads 4
@@ -67,13 +67,13 @@ less $OUTPUT_DIR/busco_output/short_summary.specific.bacteria_odb10.busco_output
 # Read mapping and coverage
 
 # First, we need to index the assembled genome.
-# We will use bwa for mapping reads to the assembled genome.
+# We will use BWA for mapping reads to the assembled genome.
 # Let's create an output directory for the mapping results
 mkdir -p $OUTPUT_DIR/mapping_output
 # Index the contigs.fasta file
 bwa index $OUTPUT_DIR/spades_assembly/contigs.fasta
 # Map the trimmed reads to the indexed genome. 
-# Important: Do not forget to change the reads to be mapped. You can use your group trimmed reads file. 
+# Important: Do not forget to change the reads to be mapped. You can use the trimmed reads file from your group. 
 bwa mem $OUTPUT_DIR/spades_assembly/contigs.fasta $READS > $OUTPUT_DIR/mapping_output/mapped_reads.sam
 
 # Convert SAM to BAM format
@@ -112,7 +112,7 @@ minimap2 genome/Ecoli_atcc_genome.fna $OUTPUT_DIR/spades_assembly/contigs.fasta 
 install.packages("ggplot2")
 # Load the library ggplot2. You need to do this every time you open R and want to use ggplot2. 
 library(ggplot2)
-# Check what is your current working directory
+# Check what your current working directory is
 getwd()
 # Change the working directory to where the PAF file is located
 setwd("results/synteny_output")
@@ -122,14 +122,14 @@ list.files()
 paf = read.delim("bacteria_synteny.paf", header=FALSE)
 # Check the first few lines of the PAF data
 head(paf)
-# Subset the first 5 alignments for plotting (optional, to reduce plot size)
+# Subset the first five alignments for plotting (optional, to reduce plot size)
 paf_sub = paf[1:5, ]
-# Subset the last 5 alignments for plotting (optional, to reduce plot size)
+# Subset the last five alignments for plotting (optional, to reduce plot size)
 paf_sub2 = paf[(nrow(paf)-4):nrow(paf), ]
 
 # Create a synteny plot
 mysyntenyplot = ggplot(data=paf_sub, aes(x=V3, xend=V4, y=V8, yend=V9, color=factor(V1))) + geom_segment() + labs(x="Reference coordinate", y="Query coordinate")
-# Create a new plot with the last 5 alignments added by editing the code above.
+# Create a new plot with the last five alignments added by editing the code above.
 
 # Display the plot
 print(mysyntenyplot)
