@@ -39,7 +39,7 @@ cat myfile.txt
 
 #if you have a lot of content, it is helpful to see the beginning or end of the file
 head myfile.txt 	# seeing the beginning few lines of the file
-tail myfile.txt	# seeing the end few lines of the file
+tail myfile.txt	  # seeing the end few lines of the file
 less myfile.txt 	# type q to get out of it if you use more or less commands.
 
 # go back to your initial directory
