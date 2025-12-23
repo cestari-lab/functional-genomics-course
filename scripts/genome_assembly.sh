@@ -1,4 +1,5 @@
 # Denovo assembly of the E. coli genome from Illumina single-end reads.
+
 # We will use the reads we trimmed and filtered (ecolireads-trimmed.fastq) as we did in the previous class.
 # The assembly will be performed using SPAdes. 
 # The quality of the assembly will be assessed using QUAST and BUSCO.
