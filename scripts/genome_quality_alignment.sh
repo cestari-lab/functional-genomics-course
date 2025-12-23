@@ -1,18 +1,13 @@
 # Genome Quality Comparison and Alignment
 
 # First, we will compare the quality of a few genomes
-
 # We have two genomes assembled with different parameters or different assemblers. We will compare their quality using QUAST. 
-
 #The genomes are from Trypanosoma cruzi Sylvio X10 strain. One was generated in 2018 and the other in 2025 using different sequencing technologies and assembly methods.
-
 quast TcSylvio_2018_genome.fasta TcSylvio_2025_genome.fasta -o tc_quast_comparison_out
 
 # The output folder 'tc_quast_comparison_out' will contain various reports and plots comparing the two assemblies, including N50, number of contigs, total length, GC content, and more.
-
 # You can visualize the results by opening the 'report.html' file in the output folder with a web browser.
 # You can also install the extension "vscode-pdf-viewer" in VS Code to view pdf files directly.
-
 # Now let's have a look at the read quality using FastQC and seqkit
 # We will first have a look at a few sequences using seqkit
 seqkit head -n 5 ecolireads-group1.fastq.gz 
