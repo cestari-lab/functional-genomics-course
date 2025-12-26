@@ -1,6 +1,6 @@
 # Denovo assembly of the E. coli genome from Illumina single-end reads.
 
-# We will use the reads we trimmed and filtered (ecolireads-trimmed.fastq) as we did in the previous class.
+# We will use the reads we trimmed and filtered in the previous class.
 # The assembly will be performed using SPAdes. 
 # The quality of the assembly will be assessed using QUAST and BUSCO.
 # We will provide step-by-step instructions in this script to better understand the process.    
@@ -16,18 +16,26 @@ spades.py --test
 # Check the output files to see if the test ran successfully. You should have a folder called spades_test in your current directory.
 
 # Now we can proceed with the assembly.
+
+# Let's create output directories to store the results.
+mkdir -p mypath/results/spades_assembly
+mkdir -p mypath/results/quast_output
+mkdir -p mypath/results/busco_output
+mkdir -p mypath/results/mapping_output
+mkdir -p mypath/results/synteny_output
+
 # Set the path to your trimmed and filtered reads. This will simplify the command. Be sure to adjust the path accordingly. 
-READS="mypath/dataset/ecolireads-trimmed.fastq"
+READS="mypath/dataset"
 
 # Set the output directory for the assembly. Do not forget to change 'mypath' to your actual path.
 OUTPUT_DIR="mypath/results"
 
-# Run SPAdes help to check the paprameters 
+# Run SPAdes help to check the parameters 
 spades.py --help 
 
-# Run SPAdes for single-end reads (Using a 7M reads file this took 50 minutes with 6 threads and 16GB of RAM) 
-# Running with 2M reads and 4 threads and 8GB of RAM took around 20 minutes. 
-spades.py --s1 $READS -o $OUTPUT_DIR/spades_assembly --careful --threads 4 --memory 8
+# Run SPAdes for single-end reads (Using a 7M reads file, this took 50 minutes with six threads and 16GB of RAM) 
+# Running with 2M reads, four threads, and 8GB of RAM took around 20 minutes. 
+spades.py --s1 $READS/ecolireads-trimmed.fastq -o $OUTPUT_DIR/spades_assembly --careful --threads 4 --memory 8
 
 # We can check the assembly output files in the specified output directory.
 # The key output files are the scaffolds.fasta and contigs.fasta.
@@ -36,7 +44,6 @@ less $OUTPUT_DIR/spades_assembly/contigs.fasta
 
 # We can also check the assembly statistics using QUAST and BUSCO, as shown in the previous script.
 # Let's start using QUAST:
-mkdir -p $OUTPUT_DIR/quast_output 
 quast $OUTPUT_DIR/spades_assembly/contigs.fasta -o $OUTPUT_DIR/quast_output --threads 4
 
 # Use reference-based evaluation with QUAST (Optional)
@@ -46,8 +53,7 @@ quast $OUTPUT_DIR/spades_assembly/contigs.fasta -o $OUTPUT_DIR/quast_output --th
 # quast $OUTPUT_DIR/contigs.fasta -r genome/Ecoli_atcc_genome.fna -o quast_ref_output --threads 4 
 
 # Now let's run BUSCO to assess genome completeness:
-# Let's create an output directory for BUSCO results
-mkdir -p $OUTPUT_DIR/busco_output
+
 # Because we are working with a bacterial genome. We will use the bacteria_odb10 lineage dataset.
 busco -i $OUTPUT_DIR/spades_assembly/contigs.fasta \
       -o results/busco_output \
@@ -69,13 +75,12 @@ less $OUTPUT_DIR/busco_output/short_summary.specific.bacteria_odb10.busco_output
 
 # First, we need to index the assembled genome.
 # We will use BWA for mapping reads to the assembled genome.
-# Let's create an output directory for the mapping results
-mkdir -p $OUTPUT_DIR/mapping_output
+
 # Index the contigs.fasta file
 bwa index $OUTPUT_DIR/spades_assembly/contigs.fasta
 # Map the trimmed reads to the indexed genome. 
-# Important: Do not forget to change the reads to be mapped. You can use the trimmed reads file from your group. 
-bwa mem $OUTPUT_DIR/spades_assembly/contigs.fasta $READS > $OUTPUT_DIR/mapping_output/mapped_reads.sam
+# Important: Do not forget to change the reads to be mapped. You can use your group-trimmed reads file. 
+bwa mem $OUTPUT_DIR/spades_assembly/contigs.fasta $READS/ecolireads-group1_trimmed.fastq > $OUTPUT_DIR/mapping_output/mapped_reads.sam
 
 # Convert SAM to BAM format
 samtools view -bS $OUTPUT_DIR/mapping_output/mapped_reads.sam > $OUTPUT_DIR/mapping_output/mapped_reads.bam
@@ -95,14 +100,12 @@ bedtools genomecov -ibam $OUTPUT_DIR/mapping_output/sorted_mapped_reads.bam > $O
 
 # Synteny analysis using minimap2
 # Synteny analysis can be performed using minimap2 to align the assembled genome to a reference genome. 
-# The reference genome is already on your folder. It is called Ecoli_atcc_genome.fna
+# The reference genome is already in your folder. It is called Ecoli_atcc_genome.fna
 # You have already installed minimap2. You can verify using:
 minimap2 --version
 # Check for commands available using:
 minimap2 --help
 
-# Let's create an output directory for synteny results
-mkdir -p $OUTPUT_DIR/synteny_output
 # Perform synteny analysis
 minimap2 genome/Ecoli_atcc_genome.fna $OUTPUT_DIR/spades_assembly/contigs.fasta > $OUTPUT_DIR/synteny_output/bacteria_synteny.paf
 # The output file bacteria_synteny.paf contains the alignment information.
@@ -137,3 +140,4 @@ print(mysyntenyplot)
 
 # Save the plot as a PNG file
 ggsave("bacteria_synteny_plot.png", plot=mysyntenyplot)
+
