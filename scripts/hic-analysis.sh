@@ -4,6 +4,7 @@
 # The first steps (not covered) entail alignment of reads to the reference genome and generation of Hi-C matrices.
 # We will cover the theory in class, additional scripts can be found in https://github.com/cestari-lab/Hi-C
 # These steps are somewhat similar to those covered in other classes. Also, the dataset is quite large which would take to long for us to process here.
+# The data used is a subset from Antunes et al. 2025, Nature Communications (https://doi.org/10.1038/s41467-025-66824-3)
 
 # First, let's install cooler, hicexplorer, and pygenometracks. 
 # We will create a new conda environment named hic_tools for this purpose, as its dependencies may conflict with other tools.
