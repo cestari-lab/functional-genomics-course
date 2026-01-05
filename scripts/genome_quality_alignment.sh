@@ -2,7 +2,9 @@
 
 # First, we will compare the quality of a few genomes
 # We have two genomes assembled with different parameters or different assemblers. We will compare their quality using QUAST. 
-#The genomes are from Trypanosoma cruzi Sylvio X10 strain. One was generated in 2018 and the other in 2025 using different sequencing technologies and assembly methods.
+# The genomes are from Trypanosoma cruzi Sylvio X10 strain. One was generated in 2018 (Berna et al. 2018, Microb Genome, 10.1099/mgen.0.000177) and the other in 
+# 2025 (Cruz-Saavedra et al. 2025, Nature Communications, https://doi.org/10.1038/s41467-025-64900-2) using different sequencing technologies and assembly methods.
+# The DNA-seq from E. coli is from Minogue et al. 2014, Genome Announcements (https://doi.org/10.1128/genomea.00969-14).
 
 #First, let's create directories for the results:
 
