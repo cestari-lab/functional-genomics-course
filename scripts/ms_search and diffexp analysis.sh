@@ -18,7 +18,7 @@ conda activate ms_tools
 
 # convert raw files to mzML format using ThermoRawFileParser 
 # The options -f=2 specifies mzML indexed output format, whereas --excludeExceptionData avoids writing extra exception data that is not needed for most analyses.
-thermorawfileparser -i ms-data.raw -b ms-data.mzML -excludeExceptionData
+thermorawfileparser -i ms-data.raw -b ms-data.mzML --excludeExceptionData
 
 # Run comet command for options
 comet
