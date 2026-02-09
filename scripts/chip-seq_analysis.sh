@@ -27,7 +27,7 @@ bamCompare -b1 dataset/chipseq/rap1-chip-B3_sorted.bam -b2 dataset/chipseq/rap1-
  --normalizeUsing BPM --extendReads 720 \
  --scaleFactorsMethod None \
  --binSize 50 --smoothLength 60 --centerReads \
- --outFileFormat bigwig --numberOfProcessors 10
+ --outFileFormat bigwig --numberOfProcessors 6
 
 #Check overall enrichment of ChIP with plotFingerprint:
   plotFingerprint --bamfiles dataset/chipseq/rap1-chip-B3_sorted.bam -b2 dataset/chipseq/rap1-inp-B4_sorted.bam \
@@ -35,13 +35,13 @@ bamCompare -b1 dataset/chipseq/rap1-chip-B3_sorted.bam -b2 dataset/chipseq/rap1-
  --extendReads 600  --binSize=1000 \
  --plotFile results/chipseq/fingerprint/ChIPvsInput_bio1.fingerprint.pdf \
  --outRawCounts results/chipseq/fingerprint/ChIPvsInput_bio1_coverage.tab \
- --numberOfProcessors 10
+ --numberOfProcessors 6
 
 # Compare biological replicates using multiBamSummary and plotCorrelation analysis:
 #multiBamSummary bins --bamfiles Input_Bio1_sorted.bam ChIP_Bio1_sorted.bam #Input_Bio2_sorted.bam ChIP_Bio2_sorted.bam Input_Bio3_sorted.bam ChIP_Bio3_sorted.bam \
 # --outFileName results/chipseq/multibams/multiBamArray_Inp-vs-ChIP-Bio1-3.npz #--binSize=5000 \
 # --extendReads=1000 --labels InputBio1 ChIP-Bio1 InputBio2 ChIP-Bio2 InputBio3 ChIP-Bio3 \
-# --numberOfProcessors 10 \
+# --numberOfProcessors 6 \
 
 # plotCorrelation --corData results/chipseq/multibams/multiBamArray_Inp-vs-ChIP-Bio1-3.npz \
 # --plotFile results/chipseq/plotcorr/REST_bam_correlation_bin.pdf \
