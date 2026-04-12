@@ -27,7 +27,7 @@ def process_data(ms_data_file, psm_file, output_file):
     print(input_df[['ScanNumber']].head())
 
     # Load the validated PSM list from the CSV file
-    psm_df = pd.read_csv(psm_file)
+    psm_df = pd.read_csv(psm_file, sep='\t')
 
     # Display PSM Data for verification
     print("PSM Data:")
