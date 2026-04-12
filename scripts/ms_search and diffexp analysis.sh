@@ -56,7 +56,7 @@ mokapot --decoy_prefix DECOY --proteins tbdbase.fasta ms-data.pep.xml
 python SpectIntensity.py ms-data.mzML ms-data.csv
 
 # Then, we will map the intensities to the identified peptides using the following script:
-python XIntensity.py ms-data.csv mokapot.psms.csv myresults.csv
+python XIntensity.py ms-data.csv mokapot.psms.txt myresults.csv
 
 # Deactivate the conda environment when done
 conda deactivate
