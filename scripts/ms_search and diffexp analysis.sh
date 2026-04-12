@@ -98,9 +98,14 @@ msstats_data <- MSstats::dataProcess(data)
 # Check processed data
 head(msstats_data$FeatureLevelData)
 
-# Perform differential expression analysis
+# Setup the contrast matrix
 comparison <- matrix(c(-1, 1), nrow=1)
+colnames(comparison) <- c("control","tumor")
+row.names(comparison)<-"tumor-control comparison"
+
+# Perform differential expression analysis
 diff_exp_results <- MSstats::groupComparison(contrast.matrix = comparison, data = msstats_data)
+
 # View results
 print(diff_exp_results) # You can further visualize and interpret the results as needed.            
 
