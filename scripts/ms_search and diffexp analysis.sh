@@ -38,7 +38,7 @@ mokapot --help
 
 # Run mokapot with appropriate options. Make sure to specify the correct decoy prefix used in your database.
 # Here is an example command:
-mokapot --decoy_prefix decoy --proteins tb_fasta.fas ms-data.pep.xml 
+mokapot --decoy_prefix DECOY --proteins tbdbase.fasta ms-data.pep.xml 
 
 # Alternatively, you can run percolator if you want to compare results.
 # percolator --help
