@@ -38,7 +38,7 @@ mokapot --help
 
 # Run mokapot with appropriate options. Make sure to specify the correct decoy prefix used in your database.
 # Here is an example command:
-mokapot --decoy_prefix decoy --proteins tb_fasta.fas ms-data.pep.xml 
+mokapot --decoy_prefix DECOY --proteins tbdbase.fasta ms-data.pep.xml 
 
 # Alternatively, you can run percolator if you want to compare results.
 # percolator --help
@@ -56,7 +56,7 @@ mokapot --decoy_prefix decoy --proteins tb_fasta.fas ms-data.pep.xml
 python SpectIntensity.py ms-data.mzML ms-data.csv
 
 # Then, we will map the intensities to the identified peptides using the following script:
-python XIntensity.py ms-data.csv mokapot.psms.csv myresults.csv
+python XIntensity.py ms-data.csv mokapot.psms.txt myresults.csv
 
 # Deactivate the conda environment when done
 conda deactivate
@@ -98,9 +98,14 @@ msstats_data <- MSstats::dataProcess(data)
 # Check processed data
 head(msstats_data$FeatureLevelData)
 
-# Perform differential expression analysis
+# Setup the contrast matrix
 comparison <- matrix(c(-1, 1), nrow=1)
+colnames(comparison) <- c("control","tumor")
+row.names(comparison)<-"tumor-control comparison"
+
+# Perform differential expression analysis
 diff_exp_results <- MSstats::groupComparison(contrast.matrix = comparison, data = msstats_data)
+
 # View results
 print(diff_exp_results) # You can further visualize and interpret the results as needed.            
 
